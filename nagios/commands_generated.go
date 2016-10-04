@@ -2,7 +2,7 @@ package nagios
 
 import "time"
 
-import lvst "github.com/vbatoufflet/go-livestatus"
+import lvst "github.com/jeremyweader/go-livestatus"
 
 // AcknowledgeHostProblem is generated from the nagios external command definition:
 // Desfinition: ACKNOWLEDGE_HOST_PROBLEM;<host_name>;<sticky>;<notify>;<persistent>;<author>;<comment>

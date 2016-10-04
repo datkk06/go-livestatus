@@ -20,7 +20,7 @@ type Query struct {
 }
 
 // Columns sets the names of the columns to retrieve when executing a query.
-func (q *Query) Columns(names ...string) *Query {
+func (q *Query) Columns(names []string) *Query {
 	q.headers = append(q.headers, "Columns: "+strings.Join(names, " "))
 	q.columns = names
 	return q
@@ -156,7 +156,7 @@ func (q *Query) Exec() (*Response, error) {
 	for {
 		data = make([]byte, 1024)
 
-		n, err := conn.Read(data)
+		_, err := conn.Read(data)
 		if err == io.EOF {
 			break
 		} else if err != nil {
@@ -165,11 +165,6 @@ func (q *Query) Exec() (*Response, error) {
 
 		buf.Write(bytes.TrimRight(data, "\x00"))
 
-		// New line signals the end of content. This check helps
-		// if the connection is not forcibly closed
-		if data[n-1] == byte('\n') {
-			break
-		}
 	}
 
 	if buf.Len() == 0 {

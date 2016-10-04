@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	lvst "github.com/vbatoufflet/go-livestatus"
+	lvst "github.com/jeremyweader/go-livestatus"
 )
 
 //go:generate go run cmd/gen-nag-external-commands/main.go -o commands_generated.go
